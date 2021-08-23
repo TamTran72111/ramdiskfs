@@ -1,0 +1,243 @@
+[  535.584150] BUG: stack guard page was hit at 00000000ec3d4d25 (stack is 00000000ba2cdc79..00000000ff531cb9)
+[  535.584156] kernel stack overflow (double-fault): 0000 [#1] SMP PTI
+[  535.584159] CPU: 1 PID: 6203 Comm: qemu-system-x86 Tainted: P           OE     5.4.0-81-generic #91-Ubuntu
+[  535.584160] Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./X99 Extreme4, BIOS P3.80 04/06/2018
+[  535.584166] RIP: 0010:visor_filemap_fault+0x21/0x241 [visorfs]
+[  535.584168] Code: 89 e5 e8 32 04 8d fa 5d c3 0f 1f 44 00 00 55 48 89 e5 41 57 41 56 41 55 41 54 53 4c 8d 9c 24 00 00 fe ff 48 81 ec 00 10 00 00 <48> 83 0c 24 00 4c 39 dc 75 ef 48 81 ec 18 01 00 00 ba f8 ff 01 00
+[  535.584170] RSP: 0018:ffffba6b408ef800 EFLAGS: 00010286
+[  535.584171] RAX: ffffffffc0541580 RBX: ffffba6b408f38a0 RCX: 0000000000000001
+[  535.584172] RDX: 0000000000000002 RSI: 0000000000000008 RDI: ffffba6b408f38a0
+[  535.584173] RBP: ffffba6b408f3828 R08: ffff9ca4dffd3000 R09: 0000000000000000
+[  535.584174] R10: 0000000000031160 R11: ffffba6b408d3800 R12: ffff9ca3a2d9fad0
+[  535.584175] R13: ffff9ca3a2d9fad0 R14: 0000000000000001 R15: ffff9ca47dc6cc80
+[  535.584176] FS:  00007ffba7088700(0000) GS:ffff9ca49f840000(0000) knlGS:0000000000000000
+[  535.584177] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  535.584178] CR2: ffffba6b408ef7f8 CR3: 0000000f19d0e001 CR4: 00000000001626e0
+[  535.584179] Call Trace:
+[  535.584226]  ? __update_load_avg_cfs_rq+0x212/0x2f0
+[  535.584230]  ? intel_pstate_update_pstate+0x40/0x40
+[  535.584232]  ? __update_load_avg_cfs_rq+0x212/0x2f0
+[  535.584236]  ? update_load_avg+0x7c/0x670
+[  535.584238]  ? __enqueue_entity+0x96/0xa0
+[  535.584240]  ? enqueue_entity+0x128/0x660
+[  535.584242]  ? enqueue_task_fair+0xeb/0x560
+[  535.584243]  ? check_preempt_curr+0x4e/0x90
+[  535.584245]  ? ttwu_do_wakeup+0x1e/0x150
+[  535.584246]  ? ttwu_do_activate+0x5b/0x70
+[  535.584247]  ? try_to_wake_up+0x224/0x6a0
+[  535.584248]  ? ttwu_do_activate+0x5b/0x70
+[  535.584250]  ? default_wake_function+0x12/0x20
+[  535.584254]  ? pollwake+0x72/0x90
+[  535.584255]  ? wake_up_q+0x70/0x70
+[  535.584257]  ? __wake_up_common+0x7e/0x140
+[  535.584259]  ? __wake_up_common_lock+0x8a/0xc0
+[  535.584261]  ? __wake_up_sync_key+0x1e/0x30
+[  535.584264]  ? sock_def_readable+0x40/0x70
+[  535.584267]  ? tun_net_xmit+0x28a/0x440
+[  535.584271]  ? dev_hard_start_xmit+0x91/0x1f0
+[  535.584274]  ? __qdisc_run+0x95/0x5b0
+[  535.584276]  ? __dev_queue_xmit+0x36f/0x9a0
+[  535.584278]  ? dev_queue_xmit+0x10/0x20
+[  535.584285]  ? br_dev_queue_push_xmit+0xab/0x190 [bridge]
+[  535.584290]  ? br_forward_finish+0xad/0xc0 [bridge]
+[  535.584291]  ? dev_queue_xmit+0x10/0x20
+[  535.584295]  ? br_dev_queue_push_xmit+0xab/0x190 [bridge]
+[  535.584299]  ? br_forward_finish+0xad/0xc0 [bridge]
+[  535.584302]  ? __br_forward+0x14e/0x1e0 [bridge]
+[  535.584306]  ? fdb_find_rcu+0xed/0x170 [bridge]
+[  535.584310]  ? br_forward+0xcf/0xe0 [bridge]
+[  535.584313]  ? br_dev_xmit+0x261/0x3c0 [bridge]
+[  535.584315]  ? dev_hard_start_xmit+0x91/0x1f0
+[  535.584317]  ? __dev_queue_xmit+0x36f/0x9a0
+[  535.584321]  ? get_unique_tuple+0x32b/0x7b0 [nf_nat]
+[  535.584322]  ? dev_queue_xmit+0x10/0x20
+[  535.584325]  ? ip_finish_output2+0x1af/0x590
+[  535.584326]  ? __ip_finish_output+0xc0/0x1e0
+[  535.584328]  ? ip_finish_output+0x2d/0xb0
+[  535.584330]  ? ip_output+0x75/0xf0
+[  535.584331]  ? __ip_finish_output+0x1e0/0x1e0
+[  535.584332]  ? ip_local_out+0x3d/0x50
+[  535.584334]  ? __ip_queue_xmit+0x17a/0x460
+[  535.584336]  ? skb_free_head+0x1e/0x30
+[  535.584338]  ? sk_stream_kill_queues+0x55/0x130
+[  535.584339]  ? kfree_skbmem+0x4e/0x60
+[  535.584341]  ? kfree_skb+0x3a/0xa0
+[  535.584343]  ? __sk_mem_reclaim+0x1e/0x20
+[  535.584345]  ? inet_csk_destroy_sock+0x9c/0x130
+[  535.584348]  ? page_counter_try_charge+0x34/0xb0
+[  535.584350]  ? __memcg_kmem_charge_memcg+0x87/0xc0
+[  535.584352]  ? __memcg_kmem_charge+0x78/0x150
+[  535.584354]  ? __alloc_pages_nodemask+0x26a/0x320
+[  535.584356]  ? alloc_pages_current+0x87/0xe0
+[  535.584359]  ? __do_fault+0x3c/0x130
+[  535.584360]  ? do_fault+0x38b/0x640
+[  535.584362]  ? __pmd_alloc+0x110/0x170
+[  535.584363]  ? __handle_mm_fault+0x4c5/0x7a0
+[  535.584365]  ? handle_mm_fault+0xca/0x200
+[  535.584366]  ? __get_user_pages+0x251/0x7d0
+[  535.584368]  ? get_user_pages_unlocked+0x145/0x1f0
+[  535.584388]  ? hva_to_pfn+0xf0/0x3b0 [kvm]
+[  535.584398]  ? __gfn_to_pfn_memslot+0x6a/0xb0 [kvm]
+[  535.584411]  ? try_async_pf+0x88/0x260 [kvm]
+[  535.584424]  ? tdp_page_fault+0x142/0x2a0 [kvm]
+[  535.584430]  ? vmx_vmexit+0x1b/0x40 [kvm_intel]
+[  535.584443]  ? kvm_mmu_page_fault+0x61/0x160 [kvm]
+[  535.584447]  ? handle_ept_violation+0x10b/0x320 [kvm_intel]
+[  535.584450]  ? vmx_handle_exit+0xab/0x7f0 [kvm_intel]
+[  535.584462]  ? vcpu_enter_guest+0x4aa/0xf60 [kvm]
+[  535.584475]  ? kvm_apic_has_interrupt+0x46/0x90 [kvm]
+[  535.584486]  ? kvm_arch_vcpu_ioctl_run+0x115/0x590 [kvm]
+[  535.584495]  ? kvm_vcpu_ioctl+0x24b/0x610 [kvm]
+[  535.584498]  ? do_futex+0x3be/0x4d0
+[  535.584500]  ? do_vfs_ioctl+0x407/0x670
+[  535.584503]  ? ksys_ioctl+0x67/0x90
+[  535.584505]  ? __x64_sys_ioctl+0x1a/0x20
+[  535.584507]  ? do_syscall_64+0x57/0x190
+[  535.584510]  ? entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[  535.584511] Modules linked in: xt_nat bridge stp llc iptable_nat xt_MASQUERADE nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 libcrc32c veth visorfs(POE) iptable_filter bpfilter vboxnetadp(OE) vboxnetflt(OE) vboxdrv(OE) snd_hda_codec_hdmi intel_rapl_msr intel_rapl_common nls_iso8859_1 snd_hda_codec_realtek nvidia_uvm(OE) snd_hda_codec_generic ledtrig_audio nvidia_drm(POE) nvidia_modeset(POE) x86_pkg_temp_thermal intel_powerclamp snd_hda_intel coretemp snd_intel_dspcfg uvcvideo snd_hda_codec videobuf2_vmalloc snd_hda_core videobuf2_memops snd_usb_audio videobuf2_v4l2 kvm_intel snd_usbmidi_lib 88x2bu(OE) videobuf2_common snd_hwdep snd_seq_midi videodev kvm snd_seq_midi_event snd_pcm input_leds cfg80211 joydev nvidia(POE) mc snd_rawmidi crct10dif_pclmul snd_seq ghash_clmulni_intel snd_seq_device snd_timer aesni_intel crypto_simd cryptd glue_helper rapl intel_cstate drm_kms_helper snd fb_sys_fops mei_me syscopyarea mxm_wmi intel_wmi_thunderbolt sysfillrect mei sysimgblt soundcore mac_hid
+[  535.584541]  sch_fq_codel msr parport_pc nfsd ppdev auth_rpcgss lp nfs_acl parport lockd drm grace sunrpc ip_tables x_tables autofs4 hid_generic usbhid hid crc32_pclmul e1000e nvme i2c_i801 lpc_ich nvme_core wmi
+[  535.584555] ---[ end trace 54c1d8aa7e94f8ae ]---
+[  535.584558] RIP: 0010:visor_filemap_fault+0x21/0x241 [visorfs]
+[  535.584559] Code: 89 e5 e8 32 04 8d fa 5d c3 0f 1f 44 00 00 55 48 89 e5 41 57 41 56 41 55 41 54 53 4c 8d 9c 24 00 00 fe ff 48 81 ec 00 10 00 00 <48> 83 0c 24 00 4c 39 dc 75 ef 48 81 ec 18 01 00 00 ba f8 ff 01 00
+[  535.584560] RSP: 0018:ffffba6b408ef800 EFLAGS: 00010286
+[  535.584562] RAX: ffffffffc0541580 RBX: ffffba6b408f38a0 RCX: 0000000000000001
+[  535.584563] RDX: 0000000000000002 RSI: 0000000000000008 RDI: ffffba6b408f38a0
+[  535.584563] RBP: ffffba6b408f3828 R08: ffff9ca4dffd3000 R09: 0000000000000000
+[  535.584564] R10: 0000000000031160 R11: ffffba6b408d3800 R12: ffff9ca3a2d9fad0
+[  535.584565] R13: ffff9ca3a2d9fad0 R14: 0000000000000001 R15: ffff9ca47dc6cc80
+[  535.584566] FS:  00007ffba7088700(0000) GS:ffff9ca49f840000(0000) knlGS:0000000000000000
+[  535.584567] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  535.584568] CR2: ffffba6b408ef7f8 CR3: 0000000f19d0e001 CR4: 00000000001626e0
+[  535.584620] ------------[ cut here ]------------
+[  535.584625] WARNING: CPU: 1 PID: 0 at kernel/rcu/tree.c:569 rcu_idle_enter+0x89/0x90
+[  535.584626] Modules linked in: xt_nat bridge stp llc iptable_nat xt_MASQUERADE nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 libcrc32c veth visorfs(POE) iptable_filter bpfilter vboxnetadp(OE) vboxnetflt(OE) vboxdrv(OE) snd_hda_codec_hdmi intel_rapl_msr intel_rapl_common nls_iso8859_1 snd_hda_codec_realtek nvidia_uvm(OE) snd_hda_codec_generic ledtrig_audio nvidia_drm(POE) nvidia_modeset(POE) x86_pkg_temp_thermal intel_powerclamp snd_hda_intel coretemp snd_intel_dspcfg uvcvideo snd_hda_codec videobuf2_vmalloc snd_hda_core videobuf2_memops snd_usb_audio videobuf2_v4l2 kvm_intel snd_usbmidi_lib 88x2bu(OE) videobuf2_common snd_hwdep snd_seq_midi videodev kvm snd_seq_midi_event snd_pcm input_leds cfg80211 joydev nvidia(POE) mc snd_rawmidi crct10dif_pclmul snd_seq ghash_clmulni_intel snd_seq_device snd_timer aesni_intel crypto_simd cryptd glue_helper rapl intel_cstate drm_kms_helper snd fb_sys_fops mei_me syscopyarea mxm_wmi intel_wmi_thunderbolt sysfillrect mei sysimgblt soundcore mac_hid
+[  535.584640]  sch_fq_codel msr parport_pc nfsd ppdev auth_rpcgss lp nfs_acl parport lockd drm grace sunrpc ip_tables x_tables autofs4 hid_generic usbhid hid crc32_pclmul e1000e nvme i2c_i801 lpc_ich nvme_core wmi
+[  535.584648] CPU: 1 PID: 0 Comm: swapper/1 Tainted: P      D    OE     5.4.0-81-generic #91-Ubuntu
+[  535.584649] Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./X99 Extreme4, BIOS P3.80 04/06/2018
+[  535.584651] RIP: 0010:rcu_idle_enter+0x89/0x90
+[  535.584652] Code: 05 84 55 2f 45 48 c7 80 d0 00 00 00 00 00 00 00 48 89 d0 65 48 03 05 6e 55 2f 45 ba 02 00 00 00 f0 0f c1 90 e0 00 00 00 5d c3 <0f> 0b eb a1 0f 1f 00 0f 1f 44 00 00 55 48 c7 c0 40 bb 02 00 48 89
+[  535.584653] RSP: 0018:ffffba6b400c7eb0 EFLAGS: 00010002
+[  535.584654] RAX: ffff9ca49f86bb40 RBX: 0000000000000001 RCX: 4000000000000000
+[  535.584655] RDX: 000000000002bb40 RSI: 0000000000000064 RDI: 00000000000008e4
+[  535.584656] RBP: ffffba6b400c7eb0 R08: 0000000000000035 R09: 0000000000000084
+[  535.584657] R10: ffff9ca49f869ac0 R11: ffff9ca49f869aa0 R12: ffff9ca498c20000
+[  535.584658] R13: ffff9ca498c20000 R14: ffffffffbc359ee0 R15: ffffda6b3fa40c00
+[  535.584659] FS:  0000000000000000(0000) GS:ffff9ca49f840000(0000) knlGS:0000000000000000
+[  535.584660] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  535.584661] CR2: ffffba6b408ef7f8 CR3: 0000000f19d0e001 CR4: 00000000001626e0
+[  535.584662] Call Trace:
+[  535.584665]  do_idle+0x1cf/0x270
+[  535.584667]  cpu_startup_entry+0x20/0x30
+[  535.584670]  start_secondary+0x167/0x1c0
+[  535.584673]  secondary_startup_64+0xa4/0xb0
+[  535.584675] ---[ end trace 54c1d8aa7e94f8af ]---
+[  535.589236] BUG: stack guard page was hit at 0000000079da1bd8 (stack is 00000000ab00db32..0000000028c14cc4)
+[  535.589242] kernel stack overflow (double-fault): 0000 [#2] SMP PTI
+[  535.589245] CPU: 2 PID: 6205 Comm: qemu-system-x86 Tainted: P      D W  OE     5.4.0-81-generic #91-Ubuntu
+[  535.589246] Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./X99 Extreme4, BIOS P3.80 04/06/2018
+[  535.589252] RIP: 0010:visor_filemap_fault+0x21/0x241 [visorfs]
+[  535.589254] Code: 89 e5 e8 32 04 8d fa 5d c3 0f 1f 44 00 00 55 48 89 e5 41 57 41 56 41 55 41 54 53 4c 8d 9c 24 00 00 fe ff 48 81 ec 00 10 00 00 <48> 83 0c 24 00 4c 39 dc 75 ef 48 81 ec 18 01 00 00 ba f8 ff 01 00
+[  535.589256] RSP: 0018:ffffba6b4306b800 EFLAGS: 00010286
+[  535.589259] RAX: ffffffffc0541580 RBX: ffffba6b4306f8a0 RCX: 0000000000000001
+[  535.589260] RDX: 0000000000000002 RSI: 0000000000000008 RDI: ffffba6b4306f8a0
+[  535.589261] RBP: ffffba6b4306f828 R08: ffff9ca4dffd3000 R09: 0000000000000000
+[  535.589262] R10: 0000000000031160 R11: ffffba6b4304f800 R12: ffff9ca3a2d9fad0
+[  535.589263] R13: ffff9ca3a2d9fad0 R14: 0000000000000001 R15: ffff9ca47dc6cc80
+[  535.589264] FS:  00007ffba6086700(0000) GS:ffff9ca49f880000(0000) knlGS:0000000000000000
+[  535.589266] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  535.589267] CR2: ffffba6b4306b7f8 CR3: 0000000f19d0e002 CR4: 00000000001626e0
+[  535.589268] Call Trace:
+[  535.589319]  ? get_partial_node.isra.0.part.0+0x19f/0x250
+[  535.589322]  ? ___slab_alloc+0x2f2/0x5c0
+[  535.589325]  ? __alloc_skb+0x84/0x1d0
+[  535.589329]  ? __update_load_avg_cfs_rq+0x212/0x2f0
+[  535.589332]  ? __alloc_skb+0x5a/0x1d0
+[  535.589335]  ? __update_load_avg_se+0x23b/0x320
+[  535.589337]  ? __update_load_avg_se+0x23b/0x320
+[  535.589340]  ? update_load_avg+0x7c/0x670
+[  535.589343]  ? __enqueue_entity+0x96/0xa0
+[  535.589345]  ? enqueue_entity+0x128/0x660
+[  535.589347]  ? enqueue_task_fair+0xeb/0x560
+[  535.589349]  ? check_preempt_curr+0x4e/0x90
+[  535.589350]  ? ttwu_do_wakeup+0x1e/0x150
+[  535.589352]  ? ttwu_do_activate+0x5b/0x70
+[  535.589353]  ? try_to_wake_up+0x224/0x6a0
+[  535.589355]  ? default_wake_function+0x12/0x20
+[  535.589359]  ? pollwake+0x72/0x90
+[  535.589361]  ? wake_up_q+0x70/0x70
+[  535.589364]  ? __wake_up_common+0x7e/0x140
+[  535.589366]  ? __wake_up_common_lock+0x8a/0xc0
+[  535.589368]  ? __wake_up_sync_key+0x1e/0x30
+[  535.589370]  ? sock_def_readable+0x40/0x70
+[  535.589374]  ? tun_net_xmit+0x28a/0x440
+[  535.589378]  ? dev_hard_start_xmit+0x91/0x1f0
+[  535.589381]  ? __qdisc_run+0x95/0x5b0
+[  535.589384]  ? __dev_queue_xmit+0x36f/0x9a0
+[  535.589386]  ? dev_queue_xmit+0x10/0x20
+[  535.589388]  ? dev_queue_xmit+0x10/0x20
+[  535.589396]  ? br_dev_queue_push_xmit+0xab/0x190 [bridge]
+[  535.589401]  ? br_forward_finish+0xad/0xc0 [bridge]
+[  535.589406]  ? br_forward_finish+0xad/0xc0 [bridge]
+[  535.589410]  ? __br_forward+0x14e/0x1e0 [bridge]
+[  535.589415]  ? fdb_find_rcu+0xed/0x170 [bridge]
+[  535.589419]  ? __br_forward+0x14e/0x1e0 [bridge]
+[  535.589423]  ? br_forward+0xcf/0xe0 [bridge]
+[  535.589427]  ? fdb_find_rcu+0xed/0x170 [bridge]
+[  535.589431]  ? br_forward+0xcf/0xe0 [bridge]
+[  535.589436]  ? br_dev_xmit+0x261/0x3c0 [bridge]
+[  535.589444]  ? nf_conntrack_tuple_taken+0x5e/0x250 [nf_conntrack]
+[  535.589447]  ? get_unique_tuple+0x32b/0x7b0 [nf_nat]
+[  535.589450]  ? __update_load_avg_cfs_rq+0x212/0x2f0
+[  535.589456]  ? __nf_ct_try_assign_helper+0x16e/0x190 [nf_conntrack]
+[  535.589459]  ? nf_conntrack_alter_reply+0xb7/0xd0 [nf_conntrack]
+[  535.589463]  ? _raw_spin_unlock_bh+0x1e/0x20
+[  535.589465]  ? nf_nat_setup_info+0x244/0x270 [nf_nat]
+[  535.589468]  ? netif_rx_internal+0x44/0x110
+[  535.589471]  ? netif_rx+0x1c/0xb0
+[  535.589474]  ? veth_xmit+0x1a6/0x210 [veth]
+[  535.589476]  ? dev_hard_start_xmit+0x91/0x1f0
+[  535.589479]  ? page_counter_try_charge+0x34/0xb0
+[  535.589481]  ? __memcg_kmem_charge_memcg+0x87/0xc0
+[  535.589483]  ? __memcg_kmem_charge+0x78/0x150
+[  535.589487]  ? __alloc_pages_nodemask+0x26a/0x320
+[  535.589489]  ? alloc_pages_current+0x87/0xe0
+[  535.589491]  ? __do_fault+0x3c/0x130
+[  535.589493]  ? do_fault+0x38b/0x640
+[  535.589495]  ? __handle_mm_fault+0x4c5/0x7a0
+[  535.589497]  ? handle_mm_fault+0xca/0x200
+[  535.589499]  ? __get_user_pages+0x251/0x7d0
+[  535.589501]  ? get_user_pages_unlocked+0x145/0x1f0
+[  535.589520]  ? hva_to_pfn+0xf0/0x3b0 [kvm]
+[  535.589532]  ? __gfn_to_pfn_memslot+0x6a/0xb0 [kvm]
+[  535.589547]  ? try_async_pf+0x88/0x260 [kvm]
+[  535.589561]  ? tdp_page_fault+0x142/0x2a0 [kvm]
+[  535.589568]  ? vmx_vmexit+0x1b/0x40 [kvm_intel]
+[  535.589582]  ? kvm_mmu_page_fault+0x61/0x160 [kvm]
+[  535.589586]  ? handle_ept_violation+0x10b/0x320 [kvm_intel]
+[  535.589591]  ? vmx_handle_exit+0xab/0x7f0 [kvm_intel]
+[  535.589604]  ? vcpu_enter_guest+0x4aa/0xf60 [kvm]
+[  535.589620]  ? kvm_apic_local_deliver+0x5e/0x60 [kvm]
+[  535.589634]  ? kvm_arch_vcpu_ioctl_run+0x115/0x590 [kvm]
+[  535.589644]  ? kvm_vcpu_ioctl+0x24b/0x610 [kvm]
+[  535.589647]  ? do_futex+0x3be/0x4d0
+[  535.589650]  ? do_vfs_ioctl+0x407/0x670
+[  535.589653]  ? ksys_ioctl+0x67/0x90
+[  535.589655]  ? __x64_sys_ioctl+0x1a/0x20
+[  535.589658]  ? do_syscall_64+0x57/0x190
+[  535.589660]  ? entry_SYSCALL_64_after_hwframe+0x44/0xa9
+[  535.589662] Modules linked in: xt_nat bridge stp llc iptable_nat xt_MASQUERADE nf_nat nf_conntrack nf_defrag_ipv6 nf_defrag_ipv4 libcrc32c veth visorfs(POE) iptable_filter bpfilter vboxnetadp(OE) vboxnetflt(OE) vboxdrv(OE) snd_hda_codec_hdmi intel_rapl_msr intel_rapl_common nls_iso8859_1 snd_hda_codec_realtek nvidia_uvm(OE) snd_hda_codec_generic ledtrig_audio nvidia_drm(POE) nvidia_modeset(POE) x86_pkg_temp_thermal intel_powerclamp snd_hda_intel coretemp snd_intel_dspcfg uvcvideo snd_hda_codec videobuf2_vmalloc snd_hda_core videobuf2_memops snd_usb_audio videobuf2_v4l2 kvm_intel snd_usbmidi_lib 88x2bu(OE) videobuf2_common snd_hwdep snd_seq_midi videodev kvm snd_seq_midi_event snd_pcm input_leds cfg80211 joydev nvidia(POE) mc snd_rawmidi crct10dif_pclmul snd_seq ghash_clmulni_intel snd_seq_device snd_timer aesni_intel crypto_simd cryptd glue_helper rapl intel_cstate drm_kms_helper snd fb_sys_fops mei_me syscopyarea mxm_wmi intel_wmi_thunderbolt sysfillrect mei sysimgblt soundcore mac_hid
+[  535.589693]  sch_fq_codel msr parport_pc nfsd ppdev auth_rpcgss lp nfs_acl parport lockd drm grace sunrpc ip_tables x_tables autofs4 hid_generic usbhid hid crc32_pclmul e1000e nvme i2c_i801 lpc_ich nvme_core wmi
+[  535.589705] ---[ end trace 54c1d8aa7e94f8b0 ]---
+[  535.589708] RIP: 0010:visor_filemap_fault+0x21/0x241 [visorfs]
+[  535.589710] Code: 89 e5 e8 32 04 8d fa 5d c3 0f 1f 44 00 00 55 48 89 e5 41 57 41 56 41 55 41 54 53 4c 8d 9c 24 00 00 fe ff 48 81 ec 00 10 00 00 <48> 83 0c 24 00 4c 39 dc 75 ef 48 81 ec 18 01 00 00 ba f8 ff 01 00
+[  535.589712] RSP: 0018:ffffba6b408ef800 EFLAGS: 00010286
+[  535.589714] RAX: ffffffffc0541580 RBX: ffffba6b408f38a0 RCX: 0000000000000001
+[  535.589715] RDX: 0000000000000002 RSI: 0000000000000008 RDI: ffffba6b408f38a0
+[  535.589716] RBP: ffffba6b408f3828 R08: ffff9ca4dffd3000 R09: 0000000000000000
+[  535.589717] R10: 0000000000031160 R11: ffffba6b408d3800 R12: ffff9ca3a2d9fad0
+[  535.589718] R13: ffff9ca3a2d9fad0 R14: 0000000000000001 R15: ffff9ca47dc6cc80
+[  535.589719] FS:  00007ffba6086700(0000) GS:ffff9ca49f880000(0000) knlGS:0000000000000000
+[  535.589721] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  535.589722] CR2: ffffba6b4306b7f8 CR3: 0000000f19d0e002 CR4: 00000000001626e0
+[ 2087.975621] perf: interrupt took too long (2503 > 2500), lowering kernel.perf_event_max_sample_rate to 79750
+
